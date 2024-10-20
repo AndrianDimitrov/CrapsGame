@@ -1,6 +1,10 @@
 package com.example.crapsGame.controller;
 
-import com.example.crapsGame.data.dto.*;
+import com.example.crapsGame.data.dto.RoundResponseDTO;
+import com.example.crapsGame.data.dto.RoundRequestDTO;
+import com.example.crapsGame.data.dto.ExtendedGameResponseDTO;
+import com.example.crapsGame.data.dto.ExtendedGameRequestDTO;
+import com.example.crapsGame.data.dto.RoundDetailsDTO;
 import com.example.crapsGame.service.CrapsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,23 +34,23 @@ public class CrapsController {
 
     @PostMapping("/play-n-rounds")
     public ExtendedGameResponseDTO playMultipleRounds(@RequestBody ExtendedGameRequestDTO request) {
-            int totalStakes = request.getStake() * request.getRounds();
-            int totalWins = 0;
-            int numberWins = 0;
+        int totalStakes = request.getStake() * request.getRounds();
+        int totalWins = 0;
+        int numberWins = 0;
 
-            for (int i = 0; i < request.getRounds(); i++) {
-                String result = crapsService.playRound();
-                int winAmount = crapsService.calculateWin(result, request.getStake());
-                totalWins += winAmount;
+        for (int i = 0; i < request.getRounds(); i++) {
+            String result = crapsService.playRound();
+            int winAmount = crapsService.calculateWin(result, request.getStake());
+            totalWins += winAmount;
 
-                if (winAmount > 0) {
-                    numberWins++;
-                }
+            if (winAmount > 0) {
+                numberWins++;
             }
+        }
 
-            double winToStakeRatio = (double) totalWins / totalStakes;
+        double winToStakeRatio = (double) totalWins / totalStakes;
 
-            return new ExtendedGameResponseDTO(totalStakes, totalWins, winToStakeRatio, numberWins);
+        return new ExtendedGameResponseDTO(totalStakes, totalWins, winToStakeRatio, numberWins);
     }
 
 }

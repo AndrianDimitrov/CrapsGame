@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.example.crapsGame.data.constants.CrapConstants.LOSE_MSG;
-import static com.example.crapsGame.data.constants.CrapConstants.WIN_MSG;
+import static com.example.crapsGame.data.constants.CrapsConstants.LOSE_MSG;
+import static com.example.crapsGame.data.constants.CrapsConstants.WIN_MSG;
 
 @Service
 public class CrapsService {
@@ -47,8 +47,8 @@ public class CrapsService {
         return 0;
     }
 
-    private int randomThrowDice() {
-       int throwDice = rand.nextInt(6) + 1 + rand.nextInt(6) + 1;
+    public int randomThrowDice() {
+        int throwDice = rand.nextInt(6) + 1 + rand.nextInt(6) + 1;
         throwHistory.add(throwDice);
         return throwDice;
     }
