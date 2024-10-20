@@ -2,7 +2,10 @@ package com.example.crapsGame.data.dto;
 
 import lombok.Getter;
 
-import static com.example.crapsGame.data.constants.CrapConstants.*;
+import static com.example.crapsGame.data.constants.CrapsConstants.INVALID_GAME_MSG;
+import static com.example.crapsGame.data.constants.CrapsConstants.INVALID_STAKE_MSG;
+import static com.example.crapsGame.data.constants.CrapsConstants.INVALID_ROUNDS_MSG;
+import static com.example.crapsGame.data.constants.CrapsConstants.CRAPS_MSG;
 
 @Getter
 public class ExtendedGameRequestDTO {
@@ -11,28 +14,25 @@ public class ExtendedGameRequestDTO {
     private int rounds;
 
     public void setStake(int stake) {
-        if (stake == 1 ) {
+        if (stake == 1) {
             this.stake = stake;
-        }
-        else{
+        } else {
             throw new IllegalArgumentException(INVALID_STAKE_MSG);
         }
     }
 
     public void setGameType(String gameType) {
-        if( gameType.equals(CRAPS_MSG)) {
+        if (gameType.equals(CRAPS_MSG)) {
             this.gameType = gameType;
-        }
-        else {
+        } else {
             throw new IllegalArgumentException(INVALID_GAME_MSG);
         }
     }
 
     public void setRounds(int rounds) {
-        if(rounds >= 2) {
+        if (rounds >= 2) {
             this.rounds = rounds;
-        }
-        else{
+        } else {
             throw new IllegalArgumentException(INVALID_ROUNDS_MSG);
         }
     }
